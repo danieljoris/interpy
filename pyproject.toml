@@ -4,11 +4,10 @@ version = "0.1.0"
 description = ""
 authors = ["Daniel Joris <rizeon@protonmail.com>"]
 readme = "README.md"
-packages = [{include = "src"}]
+packages = [{ include = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pytest-cov = "^5.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -17,11 +16,13 @@ mypy = "^1.10.0"
 black = "^24.4.2"
 flake8 = "^7.0.0"
 isort = "^5.13.2"
+pytest-cov = "^5.0.0"
+pytest-asyncio = "^0.23.7"
 
 
 [tool.black]
 line-length = 95
-target-version = ["py39", "py310","py311","py312"]
+target-version = ["py39", "py310", "py311", "py312"]
 exclude = '''
 /(
     \.git
@@ -43,7 +44,10 @@ exclude = '''
 '''
 
 [tool.pytest.ini_options]
-minversion = "6.0"
+minversion = "8.2.2"
+# -ra - Shows a summary of tests that failed, were skipped, or xfail (expected to fail)
+# -q - Runs pytest in quiet mode, showing only the summary of the test results
+addopts = "-ra -q"
 asyncio_mode = "auto"
 testpaths = ["tests"]
 
