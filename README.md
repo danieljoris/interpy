@@ -61,8 +61,10 @@ The example above will generate an error when the Python interpreter reads the c
 Interpy currently covers the following implementation errors:
 
 - `InvalidDecoratorUsageError` - This error will be generated if the *@implements* decorator is used in a method and not in a class;
-- `NotAnInterfaceError` - This error will be generated if the send parameter to *@implements* decorator is not an Protocol([PEP 0544](https://peps.python.org/pep-0544/));x
-
+- `NotAnInterfaceError` - This error will be generated if the send parameter to *@implements* decorator is not an Protocol([PEP 0544](https://peps.python.org/pep-0544/));
+- `InterfaceMethodError` - This error occurs when a class implementing an interface does not have a specific method declared or implemented;
+- `MethodNotCallableError` - This error occurs when a specific method in the class is not callable (e.g., a property or instance attribute);
+- `MethodSignatureMismatchError` - This error occurs when a method signature mismatch happens. We will provide what is expected and what we received;
 
 ---
 
