@@ -1,6 +1,10 @@
 # interpy
 Interpy is a Python library for creating interfaces in code, similar to what happens in languages like C#. This project aims to provide a structured, easy and standardized way to define interfaces in Python.
 
+![Build Status](https://img.shields.io/github/actions/workflow/status/danieljoris/interpy/ci.yml?branch=main)
+![Coverage Status](https://img.shields.io/codecov/c/github/danieljoris/interpy)
+![License](https://img.shields.io/github/license/danieljoris/interpy)
+
 ---
 
 ## 📋 Table of Contents
