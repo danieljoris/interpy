@@ -31,10 +31,16 @@ jobs:
 
     - name: Configure PyPI
       run: |
-        poetry config repositories.test-pypi https://test.pypi.org/interpy
-        poetry config repositories.pypi https://pypi.org/i-interpy
-        poetry config pypi-token.test-pypi ${{secrets.TEST_PYPI_API_TOKEN}} 
+        poetry config repositories.pypi https://pypi.org/i-interpy/
         poetry config pypi-token.pypi ${{secrets.PYPI_API_TOKEN}}
+        
+
+    - name: Configure Test PyPI
+      run: |
+        poetry config repositories.testpypi https://test.pypi.org/interpy/
+        poetry config pypi-token.testpypi ${{secrets.TEST_PYPI_API_TOKEN}} 
 
     - name: Publish to PyPI
-      run: poetry publish --build
+      run: |
+        poetry publish --build
+        poetry publish --build --repository testpypi
