@@ -4,7 +4,30 @@ version = "0.1.0"
 description = ""
 authors = ["Daniel Joris <rizeon@protonmail.com>"]
 readme = "README.md"
+homepage = "https://github.com/danieljoris/interpy"
+repository = "https://github.com/danieljoris/interpy"
 packages = [{ include = "src" }]
+keywords = [
+  "interface",
+  "protocol",
+  "type checking",
+  "python",
+  "interfaces",
+  "code validation",
+  "static typing",
+  "decorators",
+  "type enforcement",
+  "code consistency",
+  "development tools",
+  "c# style interfaces",
+  "software architecture",
+  "code structure",
+  "protocols",
+  "implementation errors",
+  "type safety",
+  "python utilities",
+  "interface methods",
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
