@@ -1,5 +1,5 @@
 import inspect
-from typing import Protocol, Union
+from typing import Type, Union
 
 from src.errors import (
     InterfaceMethodError,
@@ -12,11 +12,11 @@ from src.errors import (
 
 class IsAProtocol:
     @classmethod
-    def is_satisfied_by(cls, candidate) -> Union[bool, None]:
+    def is_satisfied_by(cls, candidate: Type[object]) -> Union[bool, None]:
 
         if not inspect.isclass(candidate):
             raise NotAnInterfaceError(candidate)
-        elif not issubclass(candidate, Protocol):
+        elif hasattr(candidate, "_is_protocol") and not candidate._is_protocol:
             raise NotAnInterfaceError(candidate)
 
         return True
