@@ -9,17 +9,19 @@ from inspect import Signature
 import inspect
 
 
+def get_object_name(obj: object):
+    return (
+        obj.__name__
+        if inspect.ismethod(obj) or inspect.isfunction(obj) or inspect.isclass(obj)
+        else str(type(obj))
+    )
+
+
 class NotAnInterfaceError(Exception):
     """Exception raised when a class is not an interface."""
 
     def __init__(self, class_object: object):
-        self.class_object_name = (
-            class_object.__name__
-            if inspect.ismethod(class_object)
-            or inspect.isfunction(class_object)
-            or inspect.isclass(class_object)
-            else str(type(class_object))
-        )
+        self.class_object_name = get_object_name(class_object)
         self.message = (
             f"{self.class_object_name} is not a Protocol and cannot be used as an interface."
         )
@@ -30,7 +32,7 @@ class InvalidDecoratorUsageError(Exception):
     """Exception raised when the '@implements' decorator is used incorrectly."""
 
     def __init__(self, class_object):
-        self.class_object_name = class_object.__name__
+        self.class_object_name = get_object_name(class_object)
         self.message = self.__generate_message()
         super().__init__(self.message)
 
@@ -52,14 +54,13 @@ class InterfaceMethodError(Exception):
 
 
 class MethodNotCallableError(Exception):
-    def __init__(self, method_name: str, class_name: str):
-        self.method_name = method_name
-        self.class_name = class_name
+    def __init__(self, obj: object):
+        self.not_callable = get_object_name(obj)
         self.message = self._generate_message()
         super().__init__(self.message)
 
     def _generate_message(self) -> str:
-        return f"Method '{self.method_name}' in class '{self.class_name}' is not callable."
+        return f"Method '{self.not_callable}' is not callable."
 
 
 class MethodSignatureMismatchError(Exception):
