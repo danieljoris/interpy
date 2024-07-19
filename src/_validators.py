@@ -1,5 +1,5 @@
 import inspect
-from typing import _ProtocolMeta, Type, Union
+from typing import Type, Union, _ProtocolMeta
 
 from src.errors import (
     InterfaceMethodError,
