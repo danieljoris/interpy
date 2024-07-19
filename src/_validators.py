@@ -1,5 +1,4 @@
-from inspect import Signature
-from typing import Protocol
+from typing import Protocol, Union
 from src.errors import (
     InterfaceMethodError,
     InvalidDecoratorUsageError,
@@ -7,21 +6,27 @@ from src.errors import (
     MethodSignatureMismatchError,
     NotAnInterfaceError,
 )
+import inspect
 
 
 class IsAProtocol:
     @classmethod
-    def is_satisfied_by(cls, candidate) -> None:
-        if not issubclass(candidate, Protocol):
+    def is_satisfied_by(cls, candidate) -> Union[bool, None]:
+
+        if not inspect.isclass(candidate):
             raise NotAnInterfaceError(candidate)
+        elif not issubclass(candidate, Protocol):
+            raise NotAnInterfaceError(candidate)
+
+        return True
 
 
 class MethodSignatureIsEqual:
     @classmethod
     def is_satisfied_by(
         cls,
-        interface_method_signature: Signature,
-        class_method_signature: Signature,
+        interface_method_signature: inspect.Signature,
+        class_method_signature: inspect.Signature,
         class_name: str,
         method_name: str,
     ) -> None:
@@ -50,8 +55,9 @@ class MethodTypeHintAreEqual:
 class IsAClass:
     @classmethod
     def is_satisfied_by(cls, candidate: object):
-        if not isinstance(candidate, type):
+        if not isinstance(candidate, type) or not inspect.isclass(candidate):
             raise InvalidDecoratorUsageError(candidate)
+        return True
 
 
 class IsAMethod:
