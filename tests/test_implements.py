@@ -25,6 +25,7 @@ class TestImplements:
         assert exc_info.value.class_object_name == FakeErrorInterface.__name__
 
     def test_throws_exception_if_is_a_method_and_not_a_class(self):
+        expected_message = "The '@implements' decorator can only be used in classes."
 
         with pytest.raises(InvalidDecoratorUsageError) as exc_info:
 
@@ -32,18 +33,24 @@ class TestImplements:
             def fake_method():
                 return None
 
-        assert (
-            exc_info.value.message
-            == "The '@implements' decorator can only be used in classes."
-        )
+        assert exc_info.value.message == expected_message
         assert hasattr(exc_info.value, "class_object_name")
         assert exc_info.value.class_object_name == "fake_method"
 
-    def test_throws(self):
+    def should_throws_an_error_when_given_fake_method_as_a_interface_in_implements_decorator(
+        self,
+    ):
+        expected_message = "fake_method is not a Protocol and cannot be used as an interface."
 
-        def fake_method():
-            return None
+        with pytest.raises(NotAnInterfaceError) as exc_info:
 
-        @implements(fake_method)
-        class DummyInterface(Protocol):
-            def fake_method_1(self, attribute1: str, attribute2: int) -> float: ...
+            def fake_method():
+                return None
+
+            @implements(fake_method)
+            class DummyClass:
+                def fake_method_1(self, attribute1: str, attribute2: int) -> float: ...
+
+        assert exc_info.value.message == expected_message
+        assert hasattr(exc_info.value, "class_object_name")
+        assert exc_info.value.class_object_name == "fake_method"
