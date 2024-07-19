@@ -16,7 +16,7 @@ class IsAProtocol:
 
         if not inspect.isclass(candidate):
             raise NotAnInterfaceError(candidate)
-        elif not issubclass(candidate, type(Protocol)):
+        elif not issubclass(candidate, Protocol):
             raise NotAnInterfaceError(candidate)
 
         return True
