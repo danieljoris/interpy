@@ -1,5 +1,3 @@
-from typing import Protocol
-
 import pytest
 
 from src._implements import implements
