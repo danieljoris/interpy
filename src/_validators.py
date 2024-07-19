@@ -65,10 +65,9 @@ class IsAClass:
 
 class IsAMethod:
     @classmethod
-    def is_satisfied_by(cls, candidate: object, method: str) -> Union[bool, None]:
-        if not callable(candidate):
-            raise MethodNotCallableError(method_name=method, class_name=candidate.__name__)
-
+    def is_satisfied_by(cls, candidate: object) -> Union[bool, None]:
+        if not callable(candidate) or inspect.isclass(candidate):
+            raise MethodNotCallableError(obj=candidate)
         return True
 
 
