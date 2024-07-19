@@ -29,11 +29,13 @@ class MethodSignatureIsEqual:
         class_method_signature: inspect.Signature,
         class_name: str,
         method_name: str,
-    ) -> None:
+    ) -> Union[bool, None]:
         if not interface_method_signature == class_method_signature:
             raise MethodSignatureMismatchError(
                 method_name, class_name, interface_method_signature, class_method_signature
             )
+
+        return True
 
 
 class MethodTypeHintAreEqual:
@@ -44,17 +46,18 @@ class MethodTypeHintAreEqual:
         class_method_type_hints,
         class_name: str,
         method_name: str,
-    ):
+    ) -> Union[bool, None]:
         if interface_method_type_hints != class_method_type_hints:
             raise TypeError(
                 f"Type hints mismatch for method {method_name} in class {class_name}. "
                 f"Expected {interface_method_type_hints}, got {class_method_type_hints}"
             )
+        return True
 
 
 class IsAClass:
     @classmethod
-    def is_satisfied_by(cls, candidate: object):
+    def is_satisfied_by(cls, candidate: object) -> Union[bool, None]:
         if not isinstance(candidate, type) or not inspect.isclass(candidate):
             raise InvalidDecoratorUsageError(candidate)
         return True
@@ -62,13 +65,17 @@ class IsAClass:
 
 class IsAMethod:
     @classmethod
-    def is_satisfied_by(cls, candidate: object, method: str) -> None:
+    def is_satisfied_by(cls, candidate: object, method: str) -> Union[bool, None]:
         if not callable(candidate):
             raise MethodNotCallableError(method_name=method, class_name=candidate.__name__)
+
+        return True
 
 
 class HasTheMethod:
     @classmethod
-    def is_satisfied_by(cls, method: str, interface: object):
+    def is_satisfied_by(cls, method: str, interface: object) -> Union[bool, None]:
         if not hasattr(interface, method):
             raise InterfaceMethodError(interface_name=interface.__name__, method_name=method)
+
+        return True
