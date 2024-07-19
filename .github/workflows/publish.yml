@@ -30,7 +30,7 @@ jobs:
       run: poetry install --no-root
 
     - name: Configure PyPI
-      run: poetry config pypi-token.pypi ${{secrets.PYPI_API_TOKEN}}
+      run: poetry config pypi-token.pypi ${{secrets.TEST_PYPI_API_TOKEN}}
 
     - name: Publish to PyPI
       run: poetry publish --build
