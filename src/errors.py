@@ -6,13 +6,20 @@
 
 
 from inspect import Signature
+import inspect
 
 
 class NotAnInterfaceError(Exception):
     """Exception raised when a class is not an interface."""
 
     def __init__(self, class_object: object):
-        self.class_object_name = class_object.__name__
+        self.class_object_name = (
+            class_object.__name__
+            if inspect.ismethod(class_object)
+            or inspect.isfunction(class_object)
+            or inspect.isclass(class_object)
+            else str(type(class_object))
+        )
         self.message = (
             f"{self.class_object_name} is not a Protocol and cannot be used as an interface."
         )
