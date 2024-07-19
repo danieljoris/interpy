@@ -1,5 +1,5 @@
 import inspect
-from typing import Type, Union
+from typing import _ProtocolMeta, Type, Union
 
 from src.errors import (
     InterfaceMethodError,
@@ -16,7 +16,7 @@ class IsAProtocol:
 
         if not inspect.isclass(candidate):
             raise NotAnInterfaceError(candidate)
-        elif hasattr(candidate, "_is_protocol") and not candidate._is_protocol:
+        elif not isinstance(candidate, _ProtocolMeta):
             raise NotAnInterfaceError(candidate)
 
         return True
