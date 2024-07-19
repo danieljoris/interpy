@@ -29,7 +29,7 @@ def implements(*interfaces):
 
                 cls_method = getattr(cls, method_name)
 
-                IsAMethod.is_satisfied_by(cls, method_name)
+                IsAMethod.is_satisfied_by(cls)
 
                 # Check method signature
                 interface_method_signature = inspect.signature(interface_method)
