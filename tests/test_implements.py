@@ -18,7 +18,8 @@ class TestImplements:
 
             @implements(FakeErrorInterface)
             class DummyClass:
-                def fake_method_1(self, attribute1: str, attribute2: int) -> float: ...
+                def fake_method_1(self, attribute1: str, attribute2: int) -> float:
+                    return 1.0
 
         assert hasattr(exc_info.value, "class_object_name")
         assert exc_info.value.class_object_name == FakeErrorInterface.__name__
@@ -48,7 +49,8 @@ class TestImplements:
 
             @implements(fake_method)
             class DummyClass:
-                def fake_method_1(self, attribute1: str, attribute2: int) -> float: ...
+                def fake_method_1(self, attribute1: str, attribute2: int) -> float:
+                    return 1.0
 
         assert exc_info.value.message == expected_message
         assert hasattr(exc_info.value, "class_object_name")

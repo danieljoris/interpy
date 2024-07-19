@@ -16,7 +16,7 @@ class IsAProtocol:
 
         if not inspect.isclass(candidate):
             raise NotAnInterfaceError(candidate)
-        elif not issubclass(candidate, Protocol):
+        elif not issubclass(candidate, type(Protocol)):
             raise NotAnInterfaceError(candidate)
 
         return True
@@ -76,6 +76,6 @@ class HasTheMethod:
     @classmethod
     def is_satisfied_by(cls, method: str, interface: object) -> Union[bool, None]:
         if not hasattr(interface, method):
-            raise InterfaceMethodError(interface_name=interface.__name__, method_name=method)
+            raise InterfaceMethodError(interface=interface, method_name=method)
 
         return True

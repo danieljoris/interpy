@@ -43,8 +43,8 @@ class InvalidDecoratorUsageError(Exception):
 class InterfaceMethodError(Exception):
     """Exception raised when Class does not have specific method declared or implemented."""
 
-    def __init__(self, interface_name: str, method_name: str):
-        self.interface_name = interface_name
+    def __init__(self, interface: object, method_name: str):
+        self.interface_name = get_object_name(interface)
         self.method_name = method_name
         self.message = self._generate_message()
         super().__init__(self.message)
