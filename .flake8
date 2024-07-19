@@ -3,4 +3,4 @@ exclude = .svn,CVS,.bzr,.hg,.git,__pycache__,.tox,venv,.eggs,build,.nox
 max-line-length = 95
 max-complexity = 10
 select = B,C,E,F,W,T4,B9
-ignore = W503, E501, E203
+ignore = W503, E501, E203, E704
