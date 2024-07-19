@@ -5,11 +5,11 @@ Interpy is a Python library for creating interfaces in code, similar to what hap
 
 ## 📋 Table of Contents
 
-- [📥 Installation](#installation)
-- [🚀 Usage](#usage)
-- [🤝 Contributing](#contributing)
-- [📜 License](#license)
-- [📧 Contact](#contact)
+- [📥 Installation](#-installation)
+- [🚀 Usage](#-usage)
+- [🤝 Contributing](#-contributing)
+- [📜 License](#-license)
+- [📧 Contact](#-contact)
 
 ---
 
