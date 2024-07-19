@@ -18,6 +18,14 @@ flake8 = "^7.0.0"
 isort = "^5.13.2"
 pytest-cov = "^5.0.0"
 pytest-asyncio = "^0.23.7"
+poethepoet = "^0.27.0"
+
+[tool.poe]
+include = [
+  "./cli/tests_tasks.toml",
+  "./cli/fmt_tasks.toml",
+  "./cli/type_check_tasks.toml",
+]
 
 
 [tool.black]
