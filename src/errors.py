@@ -5,8 +5,8 @@
 # Expected (self, abc: str, de: float) -> bool, got ()
 
 
-from inspect import Signature
 import inspect
+from inspect import Signature
 
 
 def get_object_name(obj: object):

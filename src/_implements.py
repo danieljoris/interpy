@@ -2,10 +2,10 @@ import inspect
 from typing import get_type_hints
 
 from src._validators import (
-    IsAProtocol,
-    IsAMethod,
-    IsAClass,
     HasTheMethod,
+    IsAClass,
+    IsAMethod,
+    IsAProtocol,
     MethodSignatureIsEqual,
     MethodTypeHintAreEqual,
 )

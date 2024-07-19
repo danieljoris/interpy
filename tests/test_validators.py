@@ -1,21 +1,22 @@
-import pytest
+import inspect
 from typing import Protocol
+
+import pytest
+
+from src._validators import (
+    HasTheMethod,
+    IsAClass,
+    IsAMethod,
+    IsAProtocol,
+    MethodSignatureIsEqual,
+    MethodTypeHintAreEqual,
+)
 from src.errors import (
     InterfaceMethodError,
     InvalidDecoratorUsageError,
     MethodNotCallableError,
     MethodSignatureMismatchError,
     NotAnInterfaceError,
-)
-import inspect
-
-from src._validators import (
-    IsAProtocol,
-    MethodSignatureIsEqual,
-    MethodTypeHintAreEqual,
-    IsAClass,
-    IsAMethod,
-    HasTheMethod,
 )
 
 primitive_values = [

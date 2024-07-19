@@ -1,9 +1,10 @@
 from typing import Protocol
+
 import pytest
 
+from src._implements import implements
 from src.errors import InvalidDecoratorUsageError, NotAnInterfaceError
 from tests.conftest import FakeErrorInterface, FakeInterface
-from src._implements import implements
 
 
 class TestImplements:

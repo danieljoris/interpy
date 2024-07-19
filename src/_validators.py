@@ -1,4 +1,6 @@
+import inspect
 from typing import Protocol, Union
+
 from src.errors import (
     InterfaceMethodError,
     InvalidDecoratorUsageError,
@@ -6,7 +8,6 @@ from src.errors import (
     MethodSignatureMismatchError,
     NotAnInterfaceError,
 )
-import inspect
 
 
 class IsAProtocol:
