@@ -1,0 +1,51 @@
+[tool.poe.tasks.fmt]
+help = "Run formatting tools on the code base."
+control.expr = "tool"
+
+[[tool.poe.tasks.fmt.args]]
+name = "tool"
+options = ["-t", "--tool"]
+help = "Formatting tool you want to run. Options are: isort, black or without arg if you want to run all tools."
+
+[[tool.poe.tasks.fmt.switch]]
+case = "isort"
+help = "Run isort on the code base."
+cmd = "poetry run isort --profile black src/ tests/"
+
+[[tool.poe.tasks.fmt.switch]]
+case = "black"
+help = "Run black on the code base."
+cmd = "poetry run black src/ tests/"
+
+[[tool.poe.tasks.fmt.switch]]
+help = "Run isort and black on the code base."
+sequence = ["fmt -t isort", "fmt -t black"]
+
+
+[tool.poe.tasks.style]
+help = "Validate code style in project."
+control.expr = "tool"
+
+[[tool.poe.tasks.style.args]]
+name = "tool"
+options = ["-t", "--tool"]
+help = "Style tool you want to run. Options are: isort, black, flake8 or without arg if you want to run all tools."
+
+[[tool.poe.tasks.style.switch]]
+case = "isort"
+help = "Validate isort code style."
+cmd = "poetry run isort --check --diff --profile black src/ tests/"
+
+[[tool.poe.tasks.style.switch]]
+case = "black"
+help = "Validate black code style."
+cmd = "poetry run black --check --diff src/ tests/"
+
+[[tool.poe.tasks.style.switch]]
+case = "flake8"
+help = "Validate flake8 code style."
+cmd = "poetry run flake8"
+
+[[tool.poe.tasks.style.switch]]
+help = "Validate all code style."
+sequence = ["style -t isort", "style -t black", "style -t flake8"]

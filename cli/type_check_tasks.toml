@@ -1,0 +1,3 @@
+[tool.poe.tasks.type-check]
+help = "Run static type checker."
+cmd = "poetry run mypy ./src ./tests"

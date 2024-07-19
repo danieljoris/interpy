@@ -1,0 +1,15 @@
+[tool.poe.tasks.test]
+help = "Run all unit tests and generate code coverage report."
+sequence = ["run-tests", "generate-coverage-report"]
+
+[tool.poe.tasks.run-tests]
+help = "Run only the unit tests."
+cmd = "poetry run pytest --cov src tests --cov-report=xml --asyncio-mode=auto"
+
+[tool.poe.tasks.generate-coverage-report]
+help = "Generate XML code coverage report."
+cmd = "poetry run coverage report"
+
+[tool.poe.tasks.generate-codecov-report]
+help = "Generate XML code coverage report."
+cmd = "poetry run coverage xml"
